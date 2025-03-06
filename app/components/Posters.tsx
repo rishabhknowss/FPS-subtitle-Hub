@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export const CarouselSlider = () => {
   const posters = [
@@ -28,7 +28,7 @@ export const CarouselSlider = () => {
   }, [posters.length, isPaused]);
 
   // Function to get card index accounting for wrap-around
-  const getCardIndex = (index : any) => {
+  const getCardIndex = (index : number) => {
     // Handle wrap-around for indexes
     if (index < 0) return posters.length + index;
     if (index >= posters.length) return index - posters.length;
@@ -36,7 +36,7 @@ export const CarouselSlider = () => {
   };
 
   // Function to calculate position and scale based on card position relative to active card
-  const getCardStyles = (cardIndex : any) => {
+  const getCardStyles = (cardIndex : number) => {
     const diff = (cardIndex - activeIndex + posters.length) % posters.length;
     const adjustedDiff = diff > posters.length / 2 ? diff - posters.length : diff;
     
